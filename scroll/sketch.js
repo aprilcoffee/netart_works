@@ -55,7 +55,8 @@ function Wait(A, B, C) {
     pop();
   }
 }
+/*
 function touchMoved(event){
 	console.log(event);
 		return false;
-}
+}*/

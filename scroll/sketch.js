@@ -1,7 +1,7 @@
 var wait = [];
 var pos = 25;
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(window.innerWidth-50, window.innerHeight-50);
   background(255);
   for (var s = 0; s < 108; s++) {
     wait.push(new Wait(width / 2, height / 2 + s * height/2, s%12));
@@ -14,14 +14,14 @@ function draw() {
     wait[s].update(pos);
     wait[s].show();
   }
-  strokeWeight(1);
+  strokeWeight(3);
   stroke(200);
   var loc = 200;
-  line(width/2+loc,height/2-loc,width/2+loc-30,height/2-loc)
-  line(width/2+loc,height/2-loc,width/2+loc,height/2-loc+30)
-  line(width/2-loc,height/2+loc,width/2-loc+30,height/2+loc)
-  line(width/2-loc,height/2+loc,width/2-loc,height/2+loc-30)
-  
+  line(width/2+loc,height/2-loc,width/2+loc-50,height/2-loc);
+  line(width/2+loc,height/2-loc,width/2+loc,height/2-loc+50);
+  line(width/2-loc,height/2+loc,width/2-loc+50,height/2+loc);
+  line(width/2-loc,height/2+loc,width/2-loc,height/2+loc-50);
+		
 }
 function mouseWheel(event) {
   print(event.delta);
@@ -30,7 +30,6 @@ function mouseWheel(event) {
   //uncomment to block page scrolling
   //return false;
 }
-
 function Wait(A, B, C) {
   this.orgY =B;
   this.x = A;
@@ -56,7 +55,15 @@ function Wait(A, B, C) {
   }
 }
 /*
-function touchMoved(event){
-	console.log(event);
-		return false;
+function touchMoved(){
+	console.log(mouseY);
+	pos += (mouseY-pmouseY);
 }*/
+function touchMoved(event){
+return false;
+}
+function mouseDragged(){
+	fill(0);
+		//console.log(mouseX);
+
+}

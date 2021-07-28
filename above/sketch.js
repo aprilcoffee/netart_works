@@ -8,7 +8,7 @@ let system;
 let camTarget;
 function preload(){
 	myFont = loadFont ('assets/sans.otf');
-	
+
 }
 function setup() {
 	const canvasElt = createCanvas(400,600,WEBGL).elt;
@@ -20,7 +20,7 @@ function setup() {
 	textFont(myFont);
 	system = new ParticleSystem(createVector(0,5,10));
 	//system = new particle
-	
+
 	camTarget=createVector(0,0,0);
 }
 
@@ -43,13 +43,13 @@ function draw() {
 	camera(0, 0, 0, camX, camY,camZ, 0, 1, 0);
 
 	system.show();
-	push();	
+	push();
 	translate(0,5,5);
 	textSize(12);
 	fill(255);
-	//text(pRotationX,0,-10);
-	//text(pRotationY,0,0);
-	//text(pRotationZ,0,10);
+	text(pRotationX,0,-10);
+	text(pRotationY,0,0);
+	text(pRotationZ,0,10);
 
 	pop();
 
@@ -57,9 +57,9 @@ function draw() {
 	textureMode(NORMAL);
 	noStroke();
 	translate(500,0);
-	sphere(1000); 
+	sphere(1000);
 
-	//shakeCheck();  
+	//shakeCheck();
 }
 
 function touchEnded(){
@@ -95,7 +95,7 @@ let Particle = function(_position,_showChar){
 	this.vel = createVector(random(-0.3,0.3),random(-0.1,0),0);
 	this.pos = _position.copy();
 	this.lifespan = 255;
-	this.showChar = _showChar; 
+	this.showChar = _showChar;
 }
 Particle.prototype.run=function(){
 	this.update();

@@ -11,7 +11,7 @@ var rolling = false;
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
   background(255);
-  for (var s = 0; s < 480; s++) {
+  for (var s = 0; s < 1200; s++) {
     wait.push(new Wait(width / 2, //-(12 * spread) +
       (s * spread), s % 12, s));
   }
@@ -20,18 +20,18 @@ function setup() {
 function draw() {
   //console.log(pos);
   background(255);
-  for (var s = 0; s < 480; s++) {
+  for (var s = 0; s < 1200; s++) {
     wait[s].update(pos);
     wait[s].show();
   }
   strokeWeight(3);
   stroke(200);
-  var loc = 200;
-  //line(width/2+loc,height/2-loc,width/2+loc-50,height/2-loc);
-  //line(width/2+loc,height/2-loc,width/2+loc,height/2-loc+50);
-  //line(width/2-loc,height/2+loc,width/2-loc+50,height/2+loc);
-  //line(width/2-loc,height/2+loc,width/2-loc,height/2+loc-50);
-  pos += (ppos - pos) * 0.5;
+  var loc = 150;
+  line(width/2+loc,height/2-loc,width/2+loc-50,height/2-loc);
+  line(width/2+loc,height/2-loc,width/2+loc,height/2-loc+50);
+  line(width/2-loc,height/2+loc,width/2-loc+50,height/2+loc);
+  line(width/2-loc,height/2+loc,width/2-loc,height/2+loc-50);
+  pos += (ppos - pos) * 0.2;
 }
 
 function mouseWheel(event) {
@@ -112,9 +112,9 @@ function Wait(A, B, C, E) {
     strokeWeight(10);
     translate(this.x, this.y + height / 2);
     textSize(50);
-    text(this.num, 0, 0);
-    text(this.orgY, 200, -50);
-    text(this.y, 200, 50);
+    //text(this.num, 0, 0);
+    //text(this.orgY, 200, -50);
+    //text(this.y, 200, 50);
     rotate(radians(30 * this.flag))
 
     for (var s = 0; s < 12; s++) {

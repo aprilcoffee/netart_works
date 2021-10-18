@@ -13,8 +13,8 @@ function setup() {
 
 	capture = createCapture(VIDEO);
 	capture.hide();
-	// button = createButton('play');
-	// button.mousePressed(toggleVid); // attach button listener
+	 button = createButton('play');
+	 button.mousePressed(toggleVid); // attach button listener
 }
 
 // plays or pauses the video depending on current state

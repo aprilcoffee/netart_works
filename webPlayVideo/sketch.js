@@ -4,6 +4,9 @@ let button;
 let capture;
 
 function setup() {
+
+	 button = createButton('play');
+	 button.mousePressed(toggleVid); // attach button listener
 	createCanvas(displayWidth, displayHeight);
 	// specify multiple formats for different browsers
 	video = createVideo(['assets/testvideo.mp4']);
@@ -13,8 +16,6 @@ function setup() {
 
 	capture = createCapture(VIDEO);
 	capture.hide();
-	// button = createButton('play');
-	// button.mousePressed(toggleVid); // attach button listener
 }
 
 // plays or pauses the video depending on current state

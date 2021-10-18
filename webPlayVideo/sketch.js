@@ -1,22 +1,36 @@
-let cap;
+let playing = false;
+let video;
+let button;
+let capture;
+
 function setup() {
-  createCanvas(400, 400);
-  cap = createCapture(VIDEO);
-  cap.hide();
-  rectMode(CENTER);
-  noStroke();
+	createCanvas(displayWidth, displayHeight);
+	// specify multiple formats for different browsers
+	video = createVideo(['assets/testvideo.mp4']);
+	video.hide()
+  video.play();
+	video.loop();
+
+	capture = createCapture(VIDEO);
+	capture.hide();
+	// button = createButton('play');
+	// button.mousePressed(toggleVid); // attach button listener
 }
+
+// plays or pauses the video depending on current state
+function toggleVid() {
+	if (playing) {
+		video.pause();
+		button.html('play');
+	} else {
+		video.loop();
+		button.html('pause');
+	}
+	playing = !playing;
+}
+
 function draw() {
-  background(50);
-  fill(255);
-  cap.loadPixels();
-  for (let cy = 0; cy < cap.height; cy += 10) {
-    for (let cx = 0; cx < cap.width; cx += 5) {
-      let offset = ((cy*cap.width)+cx)*4;
-      let xpos = (cx / cap.width) * width;
-      let ypos = (cy / cap.height) * height;
-      rect(xpos, ypos, 10,
-        10 * (cap.pixels[offset+1]/255));
-    }
-  }
+	background(0);
+	image(video, 0, 0, displayWidth, displayHeight); // draw the video frame to canvas
+  image(capture, 0, 0, width/2, (width * capture.height / capture.width) /2);
 }

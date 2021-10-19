@@ -7,6 +7,10 @@ let CamButton_Yes;
 let CamButton_No;
 let capture;
 
+let counter = 0 ;
+let forceOpen = false;
+let forceClose = false;
+
 let firstVideoPlaying = false;
 let camOpened = false;
 
@@ -15,6 +19,7 @@ function setup() {
 	//button = createButton('play');
 	//button.mousePressed(toggleVid); // attach button listener
 	createCanvas(displayWidth, displayHeight,WEBGL);
+	frameRate(30);
 	// specify multiple formats for different browsers
 	videoIntro = createVideo(['assets/video1_720.mp4']);
 	videoIntro.onended(firstVideoDone);
@@ -51,7 +56,7 @@ function firstVideoDone() {
 	videoCam.play();
 	videoCam.loop();
 
-
+	counter = frameCount;
 	CamButton_Yes = createButton('Yes');
 	CamButton_Yes.size(100, 100)
 	CamButton_Yes.position(width / 2 - width / 5, height / 2);
@@ -73,6 +78,7 @@ function camOpen() {
 }
 
 function camClose() {
+	forceClose = true;
 	CamButton_Yes.hide();
 	CamButton_No.hide();
 }
@@ -83,6 +89,10 @@ function draw() {
 	if (firstVideoPlaying == true)
 		image(videoIntro, 0, 0, displayWidth, displayHeight);
 	else {
+		if(frameCount - counter >= 300 && camOpened==false && forceOpen==false && forceClose!=true){
+			forceOpen = true;
+			camOpen();
+		}
 		image(videoCam, 0, 0, width, height);
 
 		if (camOpened == true) {
